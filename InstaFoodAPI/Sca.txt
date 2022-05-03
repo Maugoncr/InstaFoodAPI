@@ -1,0 +1,2 @@
+﻿
+Scaffold-DbContext -f "SERVER=.;DATABASE=InstaFoodDB;User Id=FoodUser;Password=1234" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
