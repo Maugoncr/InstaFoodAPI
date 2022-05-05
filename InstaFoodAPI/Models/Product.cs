@@ -17,7 +17,7 @@ namespace InstaFoodAPI.Models
         public string Detail { get; set; }
         public bool? Status { get; set; }
         public bool? Express { get; set; }
-        public DateTime? Published { get; set; }
+        public string Published { get; set; }
         public string ImgUrl { get; set; }
 
         public virtual Restaurant IdRestNavigation { get; set; }

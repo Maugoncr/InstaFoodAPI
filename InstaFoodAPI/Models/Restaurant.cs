@@ -20,13 +20,13 @@ namespace InstaFoodAPI.Models
         public string Telephone { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public int IdPay1 { get; set; }
+        public int? IdPay1 { get; set; }
         public string NumPay1 { get; set; }
-        public int IdPay2 { get; set; }
+        public int? IdPay2 { get; set; }
         public string NumPay2 { get; set; }
-        public int IdPay3 { get; set; }
+        public int? IdPay3 { get; set; }
         public string NumPay3 { get; set; }
-        public int Strike { get; set; }
+        public int? Strike { get; set; }
         public bool? Active { get; set; }
 
         public virtual District IdDistrictNavigation { get; set; }

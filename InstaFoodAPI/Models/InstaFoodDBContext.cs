@@ -161,8 +161,8 @@ namespace InstaFoodAPI.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.Published)
-                    .HasColumnType("datetime")
-                    .HasDefaultValueSql("(getdate())");
+                    .HasMaxLength(150)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Status)
                     .IsRequired()
@@ -249,9 +249,7 @@ namespace InstaFoodAPI.Models
                 entity.HasIndex(e => e.Email, "UQ__Restaura__A9D1053482ED093A")
                     .IsUnique();
 
-                entity.Property(e => e.Active)
-                    .IsRequired()
-                    .HasDefaultValueSql("((1))");
+                entity.Property(e => e.Active).HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.Adress)
                     .IsRequired()
@@ -263,13 +261,14 @@ namespace InstaFoodAPI.Models
                     .HasMaxLength(150)
                     .IsUnicode(false);
 
+                entity.Property(e => e.IdPay1).HasDefaultValueSql("((1))");
+
                 entity.Property(e => e.NameRest)
                     .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
                 entity.Property(e => e.NumPay1)
-                    .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
@@ -283,13 +282,15 @@ namespace InstaFoodAPI.Models
 
                 entity.Property(e => e.Password)
                     .IsRequired()
-                    .HasMaxLength(60)
+                    .HasMaxLength(250)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Schedule)
                     .IsRequired()
                     .HasMaxLength(300)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Strike).HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.Telephone)
                     .IsRequired()
@@ -305,19 +306,16 @@ namespace InstaFoodAPI.Models
                 entity.HasOne(d => d.IdPay1Navigation)
                     .WithMany(p => p.RestaurantIdPay1Navigations)
                     .HasForeignKey(d => d.IdPay1)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FKRestaurant655076");
 
                 entity.HasOne(d => d.IdPay2Navigation)
                     .WithMany(p => p.RestaurantIdPay2Navigations)
                     .HasForeignKey(d => d.IdPay2)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FKRestaurant655075");
 
                 entity.HasOne(d => d.IdPay3Navigation)
                     .WithMany(p => p.RestaurantIdPay3Navigations)
                     .HasForeignKey(d => d.IdPay3)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FKRestaurant655074");
 
                 entity.HasOne(d => d.IdProvNavigation)

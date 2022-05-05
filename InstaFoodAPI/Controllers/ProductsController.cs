@@ -6,11 +6,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using InstaFoodAPI.Models;
+using InstaFoodAPI.Attributes;
 
 namespace InstaFoodAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ApiKey]
+
     public class ProductsController : ControllerBase
     {
         private readonly InstaFoodDBContext _context;
@@ -18,6 +21,23 @@ namespace InstaFoodAPI.Controllers
         public ProductsController(InstaFoodDBContext context)
         {
             _context = context;
+        }
+
+        // Cargar solo los pickers que son IsSelectable == true
+        // GET: api/UserRoles
+        [HttpGet("GetNamesList")]
+        public async Task<ActionResult<IEnumerable<Product>>> GetNamesList()
+        {
+
+            List<Product> list = await _context.Products.Where(u => u.Status == true).ToListAsync();
+
+            if (list == null)
+            {
+                return NotFound();
+            }
+
+            return list;
+
         }
 
         // GET: api/Products
